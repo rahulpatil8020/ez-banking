@@ -11,6 +11,18 @@ interface signInProps {
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
+    const { account } = await createAdminClient();
+
+    const response = await account.createEmailPasswordSession(email, password);
+
+    await cookies().set("appwrite-session", response.secret, {
+      path: "/",
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+
+    return parseStringify(response);
   } catch (error) {
     console.error("Error", error);
   }
@@ -31,7 +43,7 @@ export const signUp = async (userData: SignUpParams) => {
 
     const session = await account.createEmailPasswordSession(email, password);
 
-    (await cookies()).set("appwrite-session", session.secret, {
+    await cookies().set("appwrite-session", session.secret, {
       path: "/",
       httpOnly: true,
       secure: true,
@@ -47,8 +59,19 @@ export const signUp = async (userData: SignUpParams) => {
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
-    return await account.get();
+    const user = await account.get();
+    return parseStringify(user);
   } catch (error) {
     console.error("Error", error);
   }
 }
+
+export const logoutAccount = async () => {
+  try {
+    const { account } = await createSessionClient();
+    cookies().delete("appwrite-session");
+    await account.deleteSession("current");
+  } catch (error) {
+    console.error("Error", error);
+  }
+};

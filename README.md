@@ -5,6 +5,32 @@
 This application provides seamless access to bank accounts, supports secure money transfers, and offers a robust set of features for managing your finances efficiently. Built using modern web technologies, the app ensures reliability, security, and performance.
 
 ---
+## Screenshots
+
+### Home Page
+![Home Page](https://github.com/rahulpatil8020/project-previews/blob/main/ez1.png)
+--
+
+### My Banks
+![My Banks](https://github.com/rahulpatil8020/project-previews/blob/main/ez2.png)
+-- 
+
+### Fund Transfers
+![Fund Transfer](https://github.com/rahulpatil8020/project-previews/blob/main/ez3.png)
+--
+
+### Connect Bank
+![Bank Connect](https://github.com/rahulpatil8020/project-previews/blob/main/ez4.png)
+-- 
+
+### Sign In
+![Home Page](https://github.com/rahulpatil8020/project-previews/blob/main/ez5.png)
+--
+
+### Sign Up
+![Home Page](https://github.com/rahulpatil8020/project-previews/blob/main/ez6.png)
+
+---
 
 ## Features  
 - **Bank Data Integration:** Access detailed transaction and account information using **Plaid**.  
@@ -55,7 +81,7 @@ cd banking-app
 npm install
 ```
 
-### **Environment Variables
+### **Environment Variables**
 
 Create a .env.local file in the root directory and configure the following:
 ```

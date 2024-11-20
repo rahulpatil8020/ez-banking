@@ -8,12 +8,21 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
@@ -115,14 +124,12 @@ const AuthForm = ({ type }: { type: string }) => {
                       name="firstName"
                       label="First Name"
                       placeholder="Enter your first name"
-                      type="text"
                     />
                     <CustomInput
                       control={form.control}
                       name="lastName"
                       label="Last Name"
-                      placeholder="Enter your last name"
-                      type="text"
+                      placeholder="Enter your first name"
                     />
                   </div>
                   <CustomInput
@@ -130,14 +137,12 @@ const AuthForm = ({ type }: { type: string }) => {
                     name="address1"
                     label="Address"
                     placeholder="Enter your specific address"
-                    type="text"
                   />
                   <CustomInput
                     control={form.control}
                     name="city"
                     label="City"
                     placeholder="Enter your city"
-                    type="text"
                   />
                   <div className="flex gap-4">
                     <CustomInput
@@ -145,14 +150,12 @@ const AuthForm = ({ type }: { type: string }) => {
                       name="state"
                       label="State"
                       placeholder="Example: NY"
-                      type="text"
                     />
                     <CustomInput
                       control={form.control}
                       name="postalCode"
                       label="Postal Code"
                       placeholder="Example: 11101"
-                      type="text"
                     />
                   </div>
                   <div className="flex gap-4">
@@ -161,14 +164,12 @@ const AuthForm = ({ type }: { type: string }) => {
                       name="dateOfBirth"
                       label="Date of Birth"
                       placeholder="YYYY-MM-DD"
-                      type="string"
                     />
                     <CustomInput
                       control={form.control}
                       name="ssn"
                       label="SSN"
                       placeholder="Example: 1234"
-                      type="string"
                     />
                   </div>
                 </>
@@ -179,7 +180,6 @@ const AuthForm = ({ type }: { type: string }) => {
                 name="email"
                 label="Email"
                 placeholder="Enter your email"
-                type="email"
               />
 
               <CustomInput
@@ -187,7 +187,6 @@ const AuthForm = ({ type }: { type: string }) => {
                 name="password"
                 label="Password"
                 placeholder="Enter your password"
-                type="password"
               />
 
               <div className="flex flex-col gap-4">
